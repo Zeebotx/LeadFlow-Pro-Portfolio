@@ -26,7 +26,7 @@ sequenceDiagram
     A->>D: Consume handoff and check authentication version
     A->>D: Record hashed refresh credential
     A-->>B: Application access credential and cookies
-    B->>B: Persist session; notify initiating window when present
+    B->>B: Persist session and notify initiating window when present
     B-->>U: Continue to workspace
 ```
 
