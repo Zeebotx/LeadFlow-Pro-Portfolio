@@ -1,0 +1,45 @@
+# Keep credentials and local configuration out of future portfolio commits.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*
+secrets*
+.infisical.json
+.aws/
+.codex/
+.agents/
+.git-credentials
+
+# Private implementation, dependencies, databases, dumps, and runtime material.
+node_modules/
+.next/
+build/
+dist/
+coverage/
+*.log
+*.sql
+*.dump
+*.backup
+*.db
+*.sqlite*
+*.csv
+*.har
+*.zip
+*.7z
+*.tar*
+
+# Local editing, captures awaiting review, and temporary files.
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+~$*
+.vscode/
+screenshots/raw/
+screenshots/unreviewed/
+private-notes/
