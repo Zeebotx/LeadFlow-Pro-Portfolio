@@ -16,9 +16,9 @@ LeadFlow Pro brings social enquiries and manually entered leads into a workspace
 
 - Built account flows and dashboard views, then worked on social connections, webhook capture, and Gemini-assisted qualification.
 - Added shared-workspace and team workflows, including invitations, recipient checks, workspace isolation, and migrations.
-- Worked on Paystack subscriptions, email notifications, access-control fixes, and regression tests.
+- Worked on email notifications, access-control fixes, and regression tests.
 
-[Contribution details and collaboration](docs/my-contributions.md)
+[Contribution details](docs/my-contributions.md)
 
 ## Two engineering problems
 

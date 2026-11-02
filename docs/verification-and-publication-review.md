@@ -8,7 +8,7 @@ The technical descriptions reflect a source review dated **2 November 2026**. Th
 | --- | --- |
 | Application behavior | Source, routes, workers, schema, and migrations inspected; application not run for this portfolio |
 | Application tests | Assertions and fixtures inspected; suites not executed |
-| Contributions | Owner-confirmed account attribution from supplied project-history screenshots; collaborative work and AI assistance acknowledged |
+| Contributions | Owner-described contribution scope; commit account labels alone do not establish individual authorship |
 | Screenshots | Four owner-supplied captures cropped/redacted and visually reviewed; no independent browser session |
 | Public examples | Source-based adaptations tested with synthetic data in PGlite; separate from application tests |
 

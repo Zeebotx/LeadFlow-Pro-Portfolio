@@ -6,7 +6,7 @@ Start with the [two case studies](technical-challenges.md) for the engineering p
 
 | Topic | Contents |
 | --- | --- |
-| [My contributions](my-contributions.md) | Responsibilities, collaboration, and AI assistance |
+| [My contributions](my-contributions.md) | Personal contribution scope |
 | [Architecture](architecture.md) | Runtime components, request flow, and background work |
 | [Database](database-design.md) | Workspace relationships, constraints, and migrations |
 | [Scoring](ai-lead-scoring.md) | Model inputs, normalization, fallback, and human control |
