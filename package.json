@@ -1,0 +1,8 @@
+{
+  "name": "leadflow-pro-portfolio",
+  "private": true,
+  "description": "Source-based LeadFlow Pro workflow examples with isolated PostgreSQL tests",
+  "engines": { "node": ">=22" },
+  "scripts": { "test": "node --test examples/workflows.test.js" },
+  "devDependencies": { "@electric-sql/pglite": "0.5.12" }
+}

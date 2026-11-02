@@ -43,3 +43,6 @@ desktop.ini
 screenshots/raw/
 screenshots/unreviewed/
 private-notes/
+
+# Public, reduced schema for the workflow examples only.
+!examples/schema.sql
