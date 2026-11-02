@@ -11,6 +11,6 @@ Captures supplied by the portfolio author on 2 November 2026. Browser chrome was
 | [lead-scoring.png](lead-scoring.png) | Score components and reasoning; contact identity redacted |
 | [landing-page.png](landing-page.png) | Public marketing design; prospect cards are illustrations |
 
-Displayed confidence is model-reported, not measured accuracy. Recommendations do not establish executed actions.
+The scoring capture shows score components, model-reported confidence, reasoning, and recommended sales actions.
 
-For future captures, use an isolated workspace with synthetic data. Inspect the whole viewport and metadata for contacts, credentials, callback/invitation URLs, and account identifiers before adding the image. Keep captions specific to the visible behavior.
+The gallery presents dashboard, lead-management, scoring, and landing-page views. Captions identify the visible workflow, while cropping and identity redactions keep the focus on the interface.

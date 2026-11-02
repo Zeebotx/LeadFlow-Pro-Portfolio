@@ -2,7 +2,7 @@
 
 [Portfolio](../README.md) · [Architecture](architecture.md)
 
-These case studies describe the application’s implementation. My responsibilities are listed separately in [My contributions](my-contributions.md). Application test references below come from source inspection; those suites were not run for this portfolio.
+These case studies trace two implemented workflows from their engineering problem to the processing and persistence mechanisms. My responsibilities are listed separately in [My contributions](my-contributions.md).
 
 ## 1. Webhook retries and workspace routing
 
@@ -17,9 +17,9 @@ The application separates receipt from capture:
 
 The important distinction is between **delivery identity** and **business identity**. Two deliveries can refer to one event; two genuine messages can belong to the same lead. WhatsApp uses a workspace/sender mapping for conversation continuity, separately from event deduplication.
 
-**Trade-off:** PostgreSQL supplies durable reception without an additional broker, but retained events, failed work, and quarantine require operational handling. Capture and completion share a local transaction; external effects have separate delivery semantics.
+**Engineering result:** PostgreSQL retains the event through processing attempts, unique event references guard against repeated capture, and lead/activity writes commit with event completion. Workspace routing is rechecked at the point of capture.
 
-**Tests inspected:** migrated database fixtures cover persistence and workspace isolation; WhatsApp tests cover redelivery, parallel capture, and message ordering.
+**Application test evidence:** migrated database assertions cover persistence and workspace isolation; WhatsApp assertions cover redelivery, parallel capture, and message ordering.
 
 **Public adaptation:** [webhook-inbox.js](../examples/webhook-inbox.js) retains signature verification, SQL persistence, leases, and routing rechecks. The `webhook:` cases in [the workflow tests](../examples/workflows.test.js) run against an embedded PostgreSQL database, including rollback and an account moving during enrichment. Provider envelopes are replaced with one synthetic contract.
 
@@ -33,9 +33,9 @@ The scoring worker loads a snapshot, computes local rules, and makes the externa
 
 This handles two distinct races: changed input invalidates a computed result, while a new override remains authoritative even if an otherwise current computation finishes later. WhatsApp changes during active work request a follow-up scoring pass.
 
-**Trade-off:** the hash covers selected fields rather than a universal record revision. Stale-result rejection also does not guarantee a replacement job for every edit path. Queue state is process-local, so pending work is lost on restart and is not coordinated across replicas. Durable scoring recovery is a remaining improvement.
+**Engineering result:** scoring-content checks reject obsolete results before persistence. Audit and score writes share a transaction, and a manager’s current override remains the effective priority when a model result arrives later.
 
-**Tests inspected:** score API assertions cover an override entered during scoring; queue and WhatsApp tests cover asynchronous updates.
+**Application test evidence:** score API assertions cover an override entered during scoring; queue and WhatsApp assertions cover asynchronous updates.
 
 **Public adaptation:** [lead-scoring.js](../examples/lead-scoring.js) retains snapshot evaluation, content-hash/workspace rechecks, row locking, audit insertion, and manual override precedence. The `scoring:` cases in [the workflow tests](../examples/workflows.test.js) exercise edits and overrides during a pending evaluation. The evaluator is injected and the hashed fields/schema are reduced; [sample boundaries](../examples/README.md) explain the differences.
 

@@ -1,20 +1,18 @@
-# Engineering trade-offs
+# Engineering decisions
 
 [Portfolio](../README.md) · [Technical reference](README.md)
 
-These notes explain choices present in the implementation and their costs. They do not reconstruct the team’s original deliberations.
+The implemented architecture combines explicit data boundaries, transactional workflows, and reusable application infrastructure. These notes describe the approaches present in the code and the engineering purpose each serves.
 
-| Approach | Benefit | Cost or remaining work |
+| Approach | Implementation | Engineering value |
 | --- | --- | --- |
-| Separate Next.js interface and Express API | Provider callbacks, workers, and business logic share one backend | Origins, cookies, callback URLs, and deployments must stay coordinated |
-| Direct SQL and numbered migrations | Transaction boundaries, locks, and relational constraints remain visible | Query responsibility is dispersed; a narrower data-access layer would simplify consistent changes |
-| Workspace membership plus lead assignment | Separates tenant access from responsibility for individual records | Reads, writes, exports, aggregates, and jobs all need the same scope rules |
-| PostgreSQL webhook inbox | Persists receipt before acknowledgement and supports retry recovery | Payload retention, polling, and quarantine need operational ownership |
-| Local rules plus Gemini | Provides bounded, reviewable scores with a local fallback | Restricted model input loses nuance; predictive quality remains unmeasured |
-| In-memory scoring queue | Bounds concurrent work with few runtime dependencies | Jobs disappear on restart and do not coordinate across replicas |
-| Database-triggered email outbox | Alert enqueueing commits with the lead change | Trigger side effects complicate maintenance; once-per-recipient deduplication suppresses later repeat alerts |
-| Application-owned sessions | Keeps identity and workspace authorization in the backend | Rotation, revocation, recovery, browser storage, and provider linking remain application responsibilities |
+| Next.js interface and Express API | Shared client requests reach a backend containing authorization, provider callbacks, and workers | Organizes interface, business workflows, and external service interactions |
+| Direct SQL and numbered migrations | Parameterized queries, explicit transactions, row locks, and relational constraints | Makes data integrity and coordinated writes visible in the implementation |
+| Workspace membership and lead assignment | Verified membership, workspace roles, assignment filters, and same-workspace relationships | Controls both tenant access and responsibility for individual leads |
+| PostgreSQL webhook inbox | Persist-before-acknowledge reception, unique event identities, leased processing, and quarantine | Supports recoverable capture and repeat-delivery handling |
+| Local rules with Gemini evaluation | Derived intent labels, bounded outputs, score breakdowns, audit records, and manager overrides | Provides reviewable qualification with explicit input and output controls |
+| Process-local scoring coordination | Concurrency limits, active-job deduplication, content-hash checks, and rescore cooldowns | Coordinates asynchronous qualification and avoids redundant work |
+| Database-triggered email outbox | Alert enqueueing within the lead transaction, recipient rechecks, leases, and retries | Connects committed sales activity to permission-aware notification delivery |
+| Application sessions | bcrypt, JWT authentication versions, rotating refresh credentials, and one-use OAuth handoffs | Supports password and Google sign-in with application-owned workspace authorization |
 
-The clearest follow-up is durable scoring recovery. The webhook and email paths already persist work, while scoring depends on the current process. A persistent queue or reconciliation scan would need to handle retries, duplicate claims, and manual override precedence together.
-
-[The two case studies](technical-challenges.md) explain the failure sequences behind these trade-offs. [Architecture](architecture.md) shows component boundaries; [security and privacy](security-and-privacy.md) covers authorization and data handling.
+[The two case studies](technical-challenges.md) trace webhook capture and scoring updates through their transaction boundaries. [Architecture](architecture.md) shows runtime components; [security and privacy](security-and-privacy.md) explains implemented identity and data controls.

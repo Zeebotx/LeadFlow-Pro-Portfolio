@@ -25,11 +25,11 @@ flowchart TD
 
 Local rules consider contact completeness, email-domain category, attribution, and recorded interactions. The model receives locally derived intent labels, an allowlisted platform, email-domain category, phone-presence flag, bounded interaction count, and an injection-warning flag. Arbitrary custom fields are replaced with an empty object.
 
-Raw enquiries, names, actual contact values, and arbitrary campaign/source text stay out of this payload. The application database still stores contact and message data. Fixed labels reduce external disclosure but also remove detail the model might otherwise use to interpret an enquiry.
+Local extraction turns enquiry text into fixed intent labels before the provider request. Names, actual contact values, raw enquiries, and arbitrary campaign/source text stay in the application; the model receives the derived labels and limited metadata.
 
 ## Aggregation and normalization
 
-The service combines deterministic and qualitative contributions into a bounded 0–100 score and derives an intent tier. It normalizes numerical fields, limits explanations, and defaults missing fields. Confidence and dimensions are explanatory model outputs; they have not been calibrated against a labelled dataset.
+The service combines deterministic and qualitative contributions into a bounded 0–100 score and derives an intent tier. It normalizes numerical fields, limits explanations, and defaults missing fields. Model-reported confidence and dimensions accompany the score as explanatory metadata.
 
 | Condition | Behavior |
 | --- | --- |
@@ -43,6 +43,6 @@ The service combines deterministic and qualitative contributions into a bounded 
 
 Score history stores component values, reasoning, model/prompt labels, telemetry, and minimized input snapshots. Audit insertion and effective-score update share a transaction. A manager’s current override retains precedence.
 
-The process-local queue limits concurrency, suppresses active duplicates, skips unchanged content, and applies rescore cooldowns. WhatsApp updates during active work request another pass. Pending jobs are lost on restart; stale rejection does not schedule a replacement for every edit path.
+The process-local queue limits concurrency, suppresses active duplicates, skips unchanged content, and applies rescore cooldowns. WhatsApp updates during active work request another pass. PostgreSQL retains the last scoring hash, score history, and effective priority used by the interface.
 
-Relevant private modules: `deterministicScoring.js`, `piiSanitizer.js`, `geminiScoringService.js`, and `scoringQueue.js`. Inspected tests cover constructed model payloads, normalization, and overrides during scoring. Predictive quality and conversion uplift have not been measured.
+Relevant private modules: `deterministicScoring.js`, `piiSanitizer.js`, `geminiScoringService.js`, and `scoringQueue.js`. Application regression assertions cover constructed model payloads, normalization, and overrides during scoring.

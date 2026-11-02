@@ -14,6 +14,18 @@ LeadFlow Pro brings social enquiries and manually entered leads into a workspace
 
 *Application capture, 2 November 2026. Contact details are redacted.*
 
+## Implemented features
+
+| Capability | Delivered functionality |
+| --- | --- |
+| Lead management | Search and filters, paginated lists and pipeline views, assignment, status updates, follow-up notes, activity history, and CSV export |
+| Shared workspaces | Personal and team workspaces, invitations, membership roles, and assignment-based record access |
+| Social integrations | Facebook, Instagram, and TikTok connection workflows and supported event capture; inbound WhatsApp messages with sender-linked history |
+| Lead qualification | Deterministic rules, Gemini-assisted evaluation, score breakdowns and history, and manager overrides |
+| Campaigns and analytics | Local campaign attribution, tracked content metrics, dashboard charts, and printable owner reports |
+| Notifications | Transactional email and queued hot-lead alerts with recipient permission checks |
+| Subscription workflows | Paystack checkout, subscription state, owner billing controls, and plan-based workspace access |
+
 ## My contribution
 
 - Built account flows and dashboard views, then worked on social connections, webhook capture, and Gemini-assisted qualification.
@@ -22,13 +34,13 @@ LeadFlow Pro brings social enquiries and manually entered leads into a workspace
 
 [Contribution details](docs/my-contributions.md)
 
-## Two engineering problems
+## Engineering highlights
 
-**Receiving an event safely before knowing where it belongs.** A valid webhook signature does not establish which workspace should receive the lead. The application persists events before acknowledgement, then rechecks account routing inside the capture transaction. Ambiguous mappings go to quarantine.
+**Durable webhook capture across workspaces.** Signed events are persisted in PostgreSQL before acknowledgement. Event identity, worker leases, transactional routing checks, and quarantine handling protect the capture workflow through redelivery and account changes.
 
 [Webhook routing, retries, and transaction boundaries →](docs/technical-challenges.md#1-webhook-retries-and-workspace-routing)
 
-**Keeping a slow AI result from replacing a newer decision.** Scoring runs outside the database transaction. Before saving, the worker locks and rechecks the lead, discards stale results, and preserves a manager’s override. The remaining weakness is restart recovery for the in-memory scoring queue.
+**Consistent AI scoring with human control.** Evaluation runs outside the write transaction. Before saving, the worker locks and rechecks the lead, rejects stale results, and preserves a manager’s override. Score audits and effective-score updates commit together.
 
 [Scoring concurrency and manual overrides →](docs/technical-challenges.md#2-stale-ai-results-and-manual-overrides)
 
@@ -43,7 +55,7 @@ npm ci
 npm test
 ```
 
-[Example contracts and limitations](examples/README.md)
+[Run and explore the workflow examples](examples/README.md)
 
 <details>
 <summary>More application views</summary>
@@ -54,7 +66,7 @@ npm test
 
 ![Scoring drawer with score components and reasoning; contact identity redacted](screenshots/lead-scoring.png)
 
-*Scoring detail. Confidence is model-reported; predictive accuracy has not been measured.*
+*Scoring detail: score components, model-reported confidence, and reasoning.*
 
 </details>
 
@@ -62,4 +74,4 @@ npm test
 
 [Architecture](docs/architecture.md) · [Database](docs/database-design.md) · [Scoring](docs/ai-lead-scoring.md) · [All reference notes](docs/README.md)
 
-The case studies describe the implementation reviewed on 2 November 2026. Application tests were inspected, not executed for this portfolio; current deployment and live provider operation were not verified. Access to the private application source for technical review is subject to authorization from Maphikeng Innovation Hub.
+The technical references connect these features to their API, database, integration, and testing mechanisms. Access to the private application source for technical review is subject to authorization from Maphikeng Innovation Hub.

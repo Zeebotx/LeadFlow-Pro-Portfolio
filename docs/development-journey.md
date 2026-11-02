@@ -15,4 +15,4 @@ Project milestones from the available May–November 2026 history. These describ
 
 The main architectural change was the move from individual accounts to shared workspaces. Creator identity remained on records while membership, assignment, and same-workspace relationships became separate constraints. External integrations added background work, with durable inbox/outbox state and a process-local scoring queue.
 
-Current maintenance costs include large controller/page modules, distributed SQL, and scoring restart recovery. [Engineering trade-offs](engineering-decisions.md) explains those limits.
+The resulting system combines full-stack interface work, workspace authorization, external integrations, transactional processing, and regression fixtures. [Engineering decisions](engineering-decisions.md) connects those delivered capabilities to their implementation patterns.

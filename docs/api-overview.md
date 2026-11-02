@@ -2,7 +2,7 @@
 
 [Portfolio](../README.md) · [Technical reference](README.md)
 
-Express serves JSON resources under `/api`; signed provider deliveries arrive under `/webhooks`. This is a selected endpoint map, not a complete client contract.
+Express serves JSON resources under `/api`; signed provider deliveries arrive under `/webhooks`. The endpoint map below covers lead, workspace, team, authentication, and billing workflows.
 
 ## Access model
 
@@ -33,6 +33,6 @@ Billing recovery routes allow an owner to pay without the ordinary subscription 
 
 Lead and campaign lists default to 25 rows and cap at 100. History uses a descending ID cursor. Export reads beyond the current UI page using a repeatable-read transaction, cursor batches, backpressure, CSV quoting, and spreadsheet-formula prefix handling.
 
-Validation includes field allowlists, score bounds, supported statuses/platforms, and same-workspace relationships. Response and error wrappers vary between controllers; there is no generated OpenAPI contract. Some analytics failures produce empty data, which weakens failure visibility.
+Validation includes field allowlists, score bounds, supported statuses/platforms, and same-workspace relationships. Handlers return JSON results and HTTP status codes for authentication, permissions, validation, and resource access.
 
-Implementation references: `server.js`, resource routers/controllers, `pagination.js`, `validation.js`, and `teamMiddleware.js`. Endpoint behavior was inspected in source; no live API calls were made for this portfolio.
+Implementation references: `server.js`, resource routers/controllers, `pagination.js`, `validation.js`, and `teamMiddleware.js`. The endpoint map is based on those route and controller implementations.

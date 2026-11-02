@@ -2,7 +2,7 @@
 
 [Portfolio](../README.md)
 
-Start with the [two case studies](technical-challenges.md) for the engineering problems and their trade-offs. These notes provide supporting detail.
+Start with the [two case studies](technical-challenges.md) for implemented webhook capture and scoring workflows. These notes explain the supporting architecture and delivered features.
 
 | Topic | Contents |
 | --- | --- |
@@ -13,9 +13,9 @@ Start with the [two case studies](technical-challenges.md) for the engineering p
 | [API](api-overview.md) | Selected endpoints and authorization rules |
 | [Integrations](integrations.md) | Social connections, payments, and email |
 | [Security and privacy](security-and-privacy.md) | Session, tenant, credential, and data boundaries |
-| [Engineering decisions](engineering-decisions.md) | Design trade-offs and maintenance costs |
+| [Engineering decisions](engineering-decisions.md) | Implemented architecture patterns and their engineering value |
 | [Development timeline](development-journey.md) | Project milestones |
 
 Public material: [runnable examples](../examples/README.md), [screenshots](../screenshots/README.md), and [diagrams](../assets/diagrams/README.md).
 
-[Review scope](verification-and-publication-review.md) records the evidence limits. [License status](../LICENSE-REVIEW.md) covers the published material.
+[License status](../LICENSE-REVIEW.md) records project ownership and licensing information for the published material.

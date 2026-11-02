@@ -13,7 +13,9 @@ npm ci
 npm test
 ```
 
-Tests use PGlite, an embedded PostgreSQL engine. They create an isolated in-memory database and make no provider calls. No credentials, database server, or application configuration are needed. Dependency installation needs npm access; subsequent tests run locally.
+Tests use PGlite, an embedded PostgreSQL engine, with an isolated in-memory database and synthetic provider/evaluator fixtures. The workflow checks exercise SQL persistence and transaction behavior locally.
+
+These executable checks cover the public adaptations. Application regression references elsewhere in the portfolio describe assertions inspected in the private project.
 
 ## Webhook capture
 
@@ -31,12 +33,12 @@ The evaluator runs outside the write transaction. Persistence locks the current 
 
 ## Relationship to the application
 
-| Sample | Private implementation basis | Deliberate reduction |
+| Sample | Private implementation basis | Public example contract |
 | --- | --- | --- |
 | Webhook inbox | `webhookSignature.js`, `webhookInbox.js`, migration 015 | One invented event envelope; provider adapters and credential handling omitted |
 | Scoring write | `ScoringQueue.executeJob` in `scoringQueue.js` | Injected normalized evaluator; only notes hashed; workspace-scoped sample lookup replaces creator-scoped job lookup and recheck |
 | [Schema](schema.sql) | Inbox, lead, and score relationships | Only fields needed for these workflows; not an application migration |
 
-The evaluator seam represents the application’s local-rules/Gemini service. Fixtures supply normalized results; this sample does not call Gemini or reproduce the proprietary prompt, weights, or privacy transform. PGlite validates SQL constraints and rollback, but its single-session test adapter does not establish multi-worker locking behavior or production PostgreSQL performance.
+The evaluator seam represents the application’s local-rules/Gemini service. Fixtures supply normalized results so the tests can control when evaluation completes and inspect the subsequent writes. Proprietary prompts, weights, and the privacy transform remain in the private application. PGlite exercises SQL constraints and rollback through a single-session adapter with controlled workflow interleavings.
 
 [Case studies](../docs/technical-challenges.md) · [License status](../LICENSE-REVIEW.md)

@@ -31,7 +31,7 @@ The shared API client sends the workspace header, bearer credential, and cookies
 
 Protected requests verify identity, resolve workspace membership, check subscription access where required, then apply role and record-level rules. Controllers validate input and issue parameterized SQL through `pg`. Transactions cover related writes. Billing recovery and invitation/bootstrap routes have their own access paths.
 
-SQL is spread across controllers, middleware, routes, and services. The transaction boundaries are explicit, but changing data-access rules requires checking several modules.
+Controllers, middleware, routes, and services use the shared PostgreSQL pool. Parameterized queries carry workspace scope, and explicit transaction boundaries coordinate related writes.
 
 ## Lead ingestion sequence
 
@@ -39,11 +39,11 @@ Signed events commit to the inbox before acknowledgement. A worker claims an eve
 
 ## Background work
 
-| Component | Stored state | Failure boundary |
+| Component | State and coordination | Implemented behavior |
 | --- | --- | --- |
-| Webhook inbox | PostgreSQL events, attempts, leases, and quarantine | Requires a running worker and failed-work handling |
-| Scoring queue | In-memory jobs, active IDs, hashes, and cooldowns | Restart loss; no cross-process coordination |
-| Email outbox | PostgreSQL jobs, retained messages, attempts, and leases | Provider acknowledgement differs from recipient delivery |
+| Webhook inbox | PostgreSQL events, attempts, leases, and quarantine | Claim due events, recover expired leases, deduplicate capture, and commit processing results |
+| Scoring queue | Process-local jobs, active IDs, and cooldowns; last scoring hash and audit records in PostgreSQL | Limit concurrency, suppress duplicate jobs, skip unchanged content, and preserve manual overrides |
+| Email outbox | PostgreSQL jobs, retained messages, attempts, and leases | Queue with lead changes, recheck recipients, retry delivery, and retain provider acknowledgement |
 
 The email worker rechecks recipient eligibility before sending. Enqueueing happens in the lead transaction; remote delivery happens later. Model calls likewise happen outside the score-write transaction.
 

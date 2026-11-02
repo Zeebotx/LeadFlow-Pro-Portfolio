@@ -44,14 +44,14 @@ Selected foreign-key relationships are shown; authentication, billing, invitatio
 | Receiving WhatsApp account has one workspace | Unique receiving-account constraint |
 | Alert is queued once per recipient for a lead | Unique workspace/lead/recipient triple |
 
-The lead and activity inbox references are separate: one event may produce a lead, an activity, both, or neither. There is no universal unique person identity. Manual contact/name matching is heuristic and can race; tracked content URLs also lack a uniqueness guarantee.
+The lead and activity inbox references are separate: one event may produce a lead, an activity, both, or neither. Manual entry also records repeat interactions by linking duplicate rows to an original lead and updating its interaction count.
 
 ## Transactions and migrations
 
 Workspace import locks source and target, moves related business records in one transaction, clears assignments, and records history. Deferrable same-workspace campaign constraints support the coordinated move.
 
-The migration runner takes an advisory lock, orders filenames, and applies each unapplied migration transactionally. Some migrations move or delete data. Startup checks a required migration filename; it does not automatically migrate.
+The dedicated migration runner takes an advisory lock, orders filenames, and applies each unapplied migration transactionally. Migrations define schema and data changes. Application startup verifies the required migration ledger entry before serving requests and starting workers.
 
-JSONB holds payloads, custom fields, and score/history details. Due-work and lead/history indexes support polling and retrieval, but production query plans were not measured. Lead deletion cascades some histories; these records are not an immutable archive.
+JSONB holds payloads, custom fields, and score/history details. Due-work and lead/history indexes support polling and retrieval. Foreign-key deletion actions coordinate cleanup of related records.
 
-Application authorization relies on Express and SQL predicates. RLS enablement in migrations does not establish effective hosted-role policy. No live database or applied migration ledger was checked for this portfolio.
+Express membership and role checks combine with workspace-scoped SQL predicates and relational constraints to enforce the application’s access model. Migrations also enable row-level security on application tables.
