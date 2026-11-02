@@ -126,6 +126,7 @@ The source review recorded **23 backend and 3 frontend test files**, including w
 | Contribution and progression | [My contributions](docs/my-contributions.md) · [Development journey](docs/development-journey.md) |
 | System design | [Architecture](docs/architecture.md) · [Database design](docs/database-design.md) · [API overview](docs/api-overview.md) |
 | Technical reasoning | [Engineering decisions](docs/engineering-decisions.md) · [Technical challenges](docs/technical-challenges.md) |
+| Educational code | [Five runnable JavaScript examples and 23 checks](examples/README.md) |
 | AI and external services | [Lead scoring](docs/ai-lead-scoring.md) · [Integrations](docs/integrations.md) |
 | Access and data handling | [Security and privacy](docs/security-and-privacy.md) |
 
@@ -136,6 +137,6 @@ This repository is a documentation portfolio; the application source is private.
 <details>
 <summary>Review scope and supporting material</summary>
 
-[Verification and publication review](docs/verification-and-publication-review.md) · [License review](LICENSE-REVIEW.md) · [Diagrams](assets/diagrams/README.md) · [Screenshot capture guide](screenshots/README.md) · [Educational example proposals](examples/README.md)
+[Verification and publication review](docs/verification-and-publication-review.md) · [License review](LICENSE-REVIEW.md) · [Diagrams](assets/diagrams/README.md) · [Screenshot capture guide](screenshots/README.md) · [Educational examples](examples/README.md)
 
 </details>

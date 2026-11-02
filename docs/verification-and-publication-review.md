@@ -34,7 +34,7 @@ Relevant repository check commands are `npm test`, `npm --prefix frontend test`,
 
 ## Publication-safety scope
 
-The portfolio was authored as documentation, with no copied application source, environment files, SQL dumps, source archives, customer data, provider results, original Git directory, or unreviewed images. Mermaid is original descriptive documentation. Proposed educational samples contain no implementation files.
+The initial portfolio was authored as documentation, with no copied application source, environment files, SQL dumps, source archives, customer data, provider results, original Git directory, or unreviewed images. Mermaid is original descriptive documentation. Independently written educational samples have since been added as described in the update below; private application implementation remains excluded.
 
 Review criteria cover credential patterns, token-like values, private URLs, connection strings, personal contact information, local/private infrastructure identifiers, file types, linked targets, source-code leakage and accidental repository metadata. Pattern scans supplement a content review; they do not prove the absence of every possible secret or legal restriction. The contribution update received the scoped review above. Later screenshots, examples, licensing, or expanded authorship claims should be reviewed when added.
 
@@ -43,7 +43,7 @@ Review criteria cover credential patterns, token-like values, private URLs, conn
 - Confirm permission to publish project descriptions/diagrams and any collaborator or institutional rights; select licensing deliberately.
 - Personal account attribution is confirmed by the owner; retain the collaboration and evidence distinctions in the contribution breakdown when adapting it for a CV.
 - Four cropped captures are included, with solid identity redactions on authenticated views and accurate captions. Additional screenshot views are optional.
-- Explicitly approve any educational sample implementations before they are added. The current list is proposals only.
+- Review the educational examples as illustrative teaching code. The owner requested their creation; licensing remains undecided.
 - Review whether the documented API/schema/architecture detail is acceptable for this private product.
 - Confirm the intended source-review access process. No private repository URL is needed in the public portfolio.
 - Preview Mermaid/Markdown in GitHub after publishing. The owner authorized public publication and adding their contact email on 2 November 2026.
@@ -90,3 +90,13 @@ On 2 November 2026, the owner explicitly requested public repository publication
 ## Publication result
 
 Published on 2 November 2026 as [Zeebotx/LeadFlow-Pro-Portfolio](https://github.com/Zeebotx/LeadFlow-Pro-Portfolio), a public documentation repository with its own initial history. The README includes the owner-authorized email link. Repository description and topics are configured. Private application source and its original Git history were not uploaded.
+
+## Educational examples update — 2 November 2026
+
+The owner requested the five examples listed in the supplied examples README. Five independent JavaScript modules and a built-in Node test suite were created with synthetic fixtures: bounded priority, event identity, stale-result protection, pending-request coordination, and structured-output normalization. They use no private application imports, credentials, environment configuration, external dependencies, databases, or network calls. They demonstrate concepts rather than reproduce proprietary application code or policy.
+
+`node --test examples/examples.test.js` passed all 23 tests on Node.js 24.15.0. Checks cover invalid inputs, bounded values, repeated deliveries, scoped identities, stale asynchronous results, shared/rejected requests, retry cleanup, and output allowlisting. Each of the five direct demonstrations was also executed successfully. These are new sample-specific results; the private application's tests and deployment were not rerun.
+
+The examples README now documents inputs, outputs, failure behavior, simplifications, and run commands. Root navigation and license wording were updated to reflect actual sample files. Existing contact details, contribution attribution, screenshots, diagrams, and unrelated documents were preserved. Source and text review checked the new samples for private code, credentials, personal information, private infrastructure references, and unintended side effects. No such material or external calls were identified. Local links and changes were checked before delivery; these checks do not establish application security or model quality.
+
+These examples were first created and verified locally. The owner subsequently requested that the reviewed examples and documentation be committed and pushed to the public portfolio repository. No private application source is included, and no software license was selected. The earlier publication result above records the initial portfolio publication.
