@@ -2,11 +2,13 @@
 
 **A shared workspace for capturing, qualifying, and following up on sales enquiries.**
 
-[Zuhayr Mollagee](https://github.com/Zeebotx) · Lead Developer · [Email](mailto:mollageezuhayr@gmail.com)
+[Zuhayr Mollagee](https://github.com/Zeebotx) · Lead System Developer · [Email](mailto:mollageezuhayr@gmail.com)
 
 Next.js / React · Node.js / Express · PostgreSQL · Gemini
 
 LeadFlow Pro brings social enquiries and manually entered leads into a workspace where teams review priority, assign follow-up, and track activity. I worked across the frontend and backend from May–November 2026 as part of a collaborative project.
+
+**Project ownership:** LeadFlow Pro is owned by **Maphikeng Innovation Hub**. I served as the **Lead System Developer**, responsible for the project’s code and technical implementation. The full application repository remains private because it belongs to the Hub; sharing its source requires the Hub’s authorization.
 
 ![Dashboard with recent leads, scores, and statuses; contact details redacted](screenshots/dashboard.png)
 
@@ -60,4 +62,4 @@ npm test
 
 [Architecture](docs/architecture.md) · [Database](docs/database-design.md) · [Scoring](docs/ai-lead-scoring.md) · [All reference notes](docs/README.md)
 
-The case studies describe the implementation reviewed on 2 November 2026. Application tests were inspected, not executed for this portfolio; current deployment and live provider operation were not verified. Private source access may be arranged for technical review on request.
+The case studies describe the implementation reviewed on 2 November 2026. Application tests were inspected, not executed for this portfolio; current deployment and live provider operation were not verified. Access to the private application source for technical review is subject to authorization from Maphikeng Innovation Hub.

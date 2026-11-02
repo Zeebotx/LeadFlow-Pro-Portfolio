@@ -8,10 +8,10 @@ The technical descriptions reflect a source review dated **2 November 2026**. Th
 | --- | --- |
 | Application behavior | Source, routes, workers, schema, and migrations inspected; application not run for this portfolio |
 | Application tests | Assertions and fixtures inspected; suites not executed |
-| Contributions | Owner-described contribution scope; commit account labels alone do not establish individual authorship |
-| Screenshots | Four owner-supplied captures cropped/redacted and visually reviewed; no independent browser session |
+| Contributions | Contributions described by the portfolio author; commit account labels alone do not establish individual authorship |
+| Screenshots | Four captures supplied by the portfolio author, cropped/redacted and visually reviewed; no independent browser session |
 | Public examples | Source-based adaptations tested with synthetic data in PGlite; separate from application tests |
 
 Current deployment, live provider approvals/delivery, applied migrations, production performance, scoring accuracy, and business outcomes were not independently verified.
 
-The owner authorized public publication and the professional contact details on 2 November 2026. Private credentials, customer identifiers, original captures, and implementation history are excluded. No public software license has been selected.
+The portfolio author requested public publication and inclusion of their professional contact details on 2 November 2026. The author clarified that **Maphikeng Innovation Hub owns LeadFlow Pro** and that their role was **Lead System Developer**, responsible for the code and technical implementation. This distinguishes the portfolio author from the project owner; access to the full private application source requires the Hub’s authorization. Private credentials, customer identifiers, original captures, and implementation history are excluded. No public software license has been selected.

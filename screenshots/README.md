@@ -2,7 +2,7 @@
 
 [Portfolio](../README.md)
 
-Owner-supplied captures from 2 November 2026. Browser chrome was cropped; authenticated views have solid identity redactions. UI values were preserved, and flattened RGB exports omit source metadata.
+Captures supplied by the portfolio author on 2 November 2026. Browser chrome was cropped; authenticated views have solid identity redactions. UI values were preserved, and flattened RGB exports omit source metadata.
 
 | File | View |
 | --- | --- |

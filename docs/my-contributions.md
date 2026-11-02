@@ -2,7 +2,7 @@
 
 [Portfolio](../README.md)
 
-I’m Zuhayr Mollagee, Lead Developer on LeadFlow Pro. I worked across the Next.js/React frontend and Node.js/Express backend from May–November 2026.
+I’m Zuhayr Mollagee. I served as **Lead System Developer** on LeadFlow Pro, a project owned by **Maphikeng Innovation Hub**. I was responsible for the system’s code and technical implementation, working across the Next.js/React frontend and Node.js/Express backend from May–November 2026.
 
 | Area | My work |
 | --- | --- |
@@ -13,6 +13,6 @@ I’m Zuhayr Mollagee, Lead Developer on LeadFlow Pro. I worked across the Next.
 | Email | Resend integration and alerts |
 | Reliability | Validation and access-control fixes, token revocation, rate limiting, and regression-test improvements |
 
-These responsibilities describe my contributions to a collaborative project; the technical case studies describe the application’s implementation as a whole.
+These responsibilities describe my contributions to a collaborative project; the technical case studies describe the application’s implementation as a whole. The application repository remains private under the project owner, and sharing the full source requires Maphikeng Innovation Hub’s authorization.
 
 For technical discussion, start with [webhook routing and scoring concurrency](technical-challenges.md). The [timeline](development-journey.md) summarizes how the project developed.
